@@ -25,12 +25,12 @@ This API uses flask, UWSGI, and nginx.
 
 A json file used to configure run time variables:
 
-```{
+{
     "url": "http://hostname:port/host_ips.txt",
     OR
     "file: "host_ips.txt",
     "s3_bucket" : "flan-scans"
-}```
+}
 
 #### Key/Values
 
@@ -41,10 +41,10 @@ A json file used to configure run time variables:
     Hosts are filtered by the Environment variable "-$DOG_ENV-" (set in systemd service config).
     Example: DOG_ENV=qa, so flan_api only uses servers containing '-qa-' in their name.
 
-    ```
+    
     1.2.3.4 server-qa-01.domain.com
     2.3.4.5 server-qa-01.domain.com
-    ```
+    
 
 - s3_bucket: This is the bucket that flan has been configured to output to.
 
