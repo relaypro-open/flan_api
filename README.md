@@ -21,34 +21,6 @@ This API uses flask, UWSGI, and nginx.
 
 ## Configuration
 
-### config.json
-
-A json file used to configure run time variables:
-
-{
-    "url": "http://hostname:port/host_ips.txt",
-    OR
-    "file: "host_ips.txt",
-    "s3_bucket" : "flan-scans"
-}
-
-#### Key/Values
-
-- url OR file: Specifices how host_ips.txt is accessed, either by local file OR URL request.
-- host_ips.txt: 
-    A text file with a list of IPs and hostnames, each line: "$IP $FullyQualifiedDomainName"
-    There is one line per IP, so if a host has multiple IPs, there will be duplicate FQDNs.
-    Hosts are filtered by the Environment variable "-$DOG_ENV-" (set in systemd service config).
-    Example: DOG_ENV=qa, so flan_api only uses servers containing '-qa-' in their name.
-
-    
-    1.2.3.4 server-qa-01.domain.com
-    2.3.4.5 server-qa-01.domain.com
-    
-
-- s3_bucket: This is the bucket that flan has been configured to output to.
-
-
 APP_DESTINATION=/opt/flan_api
 ```bash
 sudo mkdir ${APP_DESTINATION}/flan_api/
@@ -56,6 +28,38 @@ cd ${APP_DESTINATION}/flan_api/
 git clone <flan_api repo>
 sudo ./setup_flan_api.sh
 ```
+
+### config.json
+
+A json file needs to be created, used to configure run time variables:
+
+```
+{
+    "url": "http://hostname:port/host_ips.txt",
+    OR
+    "file: "host_ips.txt",
+    "s3_bucket" : "flan-scans"
+}
+```
+
+#### key/values
+
+- url OR file: Specifices how host_ips.txt is accessed, either by local file OR URL request.
+- s3_bucket: This is the bucket that flan has been configured to output to.
+- host_ips.txt: 
+    A text file with a list of IPs and hostnames, each line: "$IP $FullyQualifiedDomainName"
+
+    There is one line per IP, so if a host has multiple IPs, there will be duplicate FQDNs.
+
+    Hosts are filtered by the Environment variable "-$DOG_ENV-" (set in systemd service config).
+
+    example: DOG_ENV=qa, so flan_api only uses servers containing '-qa-' in their name.
+
+```    
+1.2.3.4 server-qa-01.domain.com
+2.3.4.5 server-qa-01.domain.com
+```
+
 ## Systemd Configuration
 
 ```
