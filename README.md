@@ -4,7 +4,7 @@
 
 <h1>Flan API</h1>
 
-Flan API is an api that pulls data generated from Flan Scan [Flan Scan](https://bitbucket.org/republicwireless/flan_scan/src/master/) which is based off of CloudFlare's [Flan](https://github.com/cloudflare/flan) vulnerability scanner. This API will take a static file or a HTTP endpoint that contains a list of IPs/Hostnames and then gathers data from a flan scan located in s3, zips each ip/hostname together with the discovered apps and vulnerabilities and returns that data for consumption by Dog Park.
+Flan API is an api that pulls data generated from CloudFlare's Flan Scan [Flan Scan](https://github.com/cloudflare/flan) vulnerability scanner. This API will take a static file or a HTTP endpoint that contains a list of IPs/Hostnames and then gathers data from a flan scan located in s3, zips each ip/hostname together with the discovered apps and vulnerabilities and returns that data for consumption by Dog Park.
 
 This API uses flask, UWSGI, and nginx. 
 
