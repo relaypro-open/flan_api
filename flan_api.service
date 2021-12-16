@@ -1,0 +1,14 @@
+[Unit]
+Description=uWSGI instance to serve flan_api
+After=network.target
+
+[Service]
+User=flan
+Group=www-data
+WorkingDirectory=/opt/flan_api
+Environment="PATH=/opt/flan_api/flan_api_venv/bin/"
+Environment="DOG_ENV=qa"
+ExecStart=/opt/flan_api/flan_api_venv/bin/uwsgi --ini flan_scan_api.ini
+
+[Install]
+WantedBy=multi-user.target
